@@ -19,41 +19,41 @@ export class UserService {
     UserType: ''
   };
 
-noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
+  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
-constructor(private http: HttpClient) { }
-postUser(user: User){
-  console.log(JSON.stringify(user));
-    return this.http.post(environment.apiBaseUrl+'/register',user,this.noAuthHeader);
+  constructor(private http: HttpClient) { }
+  postUser(user: User) {
+    console.log(JSON.stringify(user));
+    return this.http.post(environment.apiBaseUrl + '/register', user, this.noAuthHeader);
   }
   login(authCredentials) {
     //console.log("Auth",JSON.stringify(authCredentials));
-    return this.http.post(environment.apiBaseUrl + '/authenticate',authCredentials,this.noAuthHeader);
+    return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials, this.noAuthHeader);
   }
 
   getUserProfile() {
     return this.http.get(environment.apiBaseUrl + '/userProfile');
   }
-  
+
   setToken(token: string) {
     localStorage.setItem('token', token);
 
   }
   deleteToken() {
     localStorage.removeItem('token');
-  
+
   }
   getToken() {
     return localStorage.getItem('token');
   }
 
-  getUserPayLoad(){
-    var token=localStorage.getItem('token');
-    if(token){
-      var userPayLoad=atob(token.split('.')[1]);
+  getUserPayLoad() {
+    var token = localStorage.getItem('token');
+    if (token) {
+      var userPayLoad = atob(token.split('.')[1]);
       return JSON.parse(userPayLoad);
     }
-    else{
+    else {
       return null;
     }
 
@@ -65,5 +65,8 @@ postUser(user: User){
     else
       return false;
   }
+  OTPverify(email){
+    return this.http.post(environment.apiBaseUrl + '/OTP',{Email:email.toString()},this.noAuthHeader);
   }
+}
 

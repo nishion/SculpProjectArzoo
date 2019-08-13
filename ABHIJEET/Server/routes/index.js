@@ -7,5 +7,6 @@ const jwtHelper = require('../config/jwtHelper');
 router.post('/register', ctrlUser.register);
 router.post('/authenticate', ctrlUser.authenticate);
 router.get('/userProfile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
+router.post('/OTP',ctrlUser.OTP);
 
 module.exports = router;

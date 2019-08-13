@@ -11,12 +11,38 @@ import { NgForm } from '@angular/forms';
 export class SignUpComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   showSucessMessage: boolean;
+  isVerified = false;
+  Email :"";
+  OTPMSG="";
+  OTPClass : any;
   serverErrorMessages: string;
   constructor(private userService: UserService) { }
-
+  correctOTP = ".}:{P{P{";
+  OTP = "";
   ngOnInit() {
+
   }
+  sendOTP(){
+    this.userService.OTPverify(this.userService.selectedUser.Email).subscribe(res => {
+      this.correctOTP = res.toString();
+      console.log(res);
+    })
+  }
+  onVerify(form: NgForm) {
+      if (this.OTP == this.correctOTP) {
+        this.isVerified = true;
+        this.OTPClass = "success"
+        this.OTPMSG = "Verified"
+      } else {
+        this.OTPMSG = "Try Again"
+        this.OTPClass = "alert"
+      }
+  }
+
+
+
   onSubmit(form: NgForm) {
+    form.value.UserType = "U"
     this.userService.postUser(form.value).subscribe(
       res => {
         this.showSucessMessage = true;

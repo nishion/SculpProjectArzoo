@@ -68,5 +68,9 @@ export class UserService {
   OTPverify(email){
     return this.http.post(environment.apiBaseUrl + '/OTP',{Email:email.toString()},this.noAuthHeader);
   }
+
+  updateUser(user: User){
+    return this.http.post(environment.apiBaseUrl + '/update',user);
+  }
 }
 

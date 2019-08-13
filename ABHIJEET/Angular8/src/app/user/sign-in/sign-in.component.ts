@@ -21,11 +21,14 @@ export class SignInComponent implements OnInit {
 
 
   ngOnInit() {
+    if(this.userService.getToken()){
+      this.router.navigateByUrl('/userProfile');
+    }
   }
   onSubmit(form : NgForm){
     this.userService.login(form.value).subscribe(
       res => {
-        //console.log(JSON.stringify(res))
+        
         this.userService.setToken(res['token']);
         this.router.navigateByUrl('/userProfile');
       },

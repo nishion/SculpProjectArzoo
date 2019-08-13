@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { Router } from "@angular/router";
+import { NgForm } from '@angular/forms';
+import { User } from '../shared/user.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,16 +11,18 @@ import { Router } from "@angular/router";
 })
 export class UserProfileComponent implements OnInit {
   userDetails;
+  oldPassword;
+  newPassword;
+  isEdit = true;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.userService.getUserProfile().subscribe(
       res => {
-        this.userDetails = res['user'];
+        this.userService.selectedUser = res['user'];
       },
       err => { 
-        console.log(err);
-        
+        console.log(err); 
       }
     );
   }
@@ -26,6 +30,22 @@ export class UserProfileComponent implements OnInit {
   onLogout(){
     this.userService.deleteToken();
     this.router.navigate(['/login']);
+  }
+
+  edit(){
+    console.log(JSON.stringify(this.userDetails));
+    this.isEdit = false;
+  }
+
+  onSubmit(form:NgForm){
+    let updatedUser = new User();
+    updatedUser = form.value;
+    updatedUser.ConfirmPassword = form.value.Password;
+    this.userService.updateUser(updatedUser).subscribe((res)=>{
+      console.log(res);
+    },(err)=>{
+      console.log(err);
+    })
   }
 
 }

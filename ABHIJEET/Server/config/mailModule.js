@@ -33,7 +33,7 @@ function sendMail(email, otp) {
     });
 
     var mailOption = {
-        from: 'Saad Ahmed <saad.ahmed@onval.co>',
+        from: 'Support Sculp <support@sculpfitness.co.in>',
         to: email,
         subject: 'Email Verification',
         text: 'Your One Time Password for E-mail verification is : ' + otp

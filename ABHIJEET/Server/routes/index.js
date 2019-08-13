@@ -8,5 +8,6 @@ router.post('/register', ctrlUser.register);
 router.post('/authenticate', ctrlUser.authenticate);
 router.get('/userProfile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.post('/OTP',ctrlUser.OTP);
+router.post('/update',jwtHelper.verifyJwtToken,ctrlUser.updateUser);
 
 module.exports = router;

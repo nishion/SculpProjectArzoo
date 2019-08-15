@@ -5,14 +5,15 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { LandingPageComponent } from './user/landing-page/landing-page.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { AuthGuard } from './auth/auth.guard';
+import { MyPlanComponent } from './user/my-plan/my-plan.component';
 
 export const appRoutes: Routes = [
     {
-        
-        path: '', component:LandingPageComponent,
+
+        path: '', component: LandingPageComponent,
         //children: [{ path: '', component: SignUpComponent }]
     },
-  
+
     {
         path: 'signup', component: SignUpComponent,
         //children: [{ path: '', component: SignUpComponent }]
@@ -20,12 +21,15 @@ export const appRoutes: Routes = [
 
     {
         path: 'login', component: SignInComponent,
-      //  children: [{ path: '', component: SignInComponent }]
+        //  children: [{ path: '', component: SignInComponent }]
     },
     {
-        path: 'userProfile', component:UserProfileComponent,canActivate:[AuthGuard]
+        path: 'userProfile', component: UserProfileComponent, canActivate: [AuthGuard]
     },
-      {
-        path: 'xD', redirectTo: '' , pathMatch: 'full'
+    {
+        path: 'myPlan', component: MyPlanComponent,
+    },
+    {
+        path: 'xD', redirectTo: '', pathMatch: 'full'
     }
 ];

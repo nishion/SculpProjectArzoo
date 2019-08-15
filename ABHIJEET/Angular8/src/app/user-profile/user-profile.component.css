@@ -44,8 +44,9 @@
     text-rendering: optimizeLegibility;
   }
   
+ 
   .menu{
-     
+      height: 100%;
       width: 100%;
       background-color:rgb(247, 186, 73); 
   }
@@ -123,7 +124,7 @@ margin-left: 20px;
 }
 
 .form-input {
-padding-top: 8px;
+  padding-top: 21px;
 }
 
 .select-list {
@@ -208,4 +209,15 @@ margin-top:20px;
 
 option{
 color:black;
+}
+
+.userName {
+  height: 100%;
+  width: 100%;
+  padding-top : 50%;
+  padding-bottom : 50%;
+  padding-left : 25%;
+  padding-right: 25%;
+  text-align: center;
+  vertical-align: middle;
 }

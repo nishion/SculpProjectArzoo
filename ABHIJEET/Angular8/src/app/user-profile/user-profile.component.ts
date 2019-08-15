@@ -10,9 +10,8 @@ import { User } from '../shared/user.model';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  userDetails;
-  oldPassword;
-  newPassword;
+  
+  Mobile = "";
   isEdit = true;
   constructor(private userService: UserService, private router: Router) { }
 
@@ -20,6 +19,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserProfile().subscribe(
       res => {
         this.userService.selectedUser = res['user'];
+        this.Mobile ="+" +  this.userService.selectedUser.CountryCode+" " + this.userService.selectedUser.MobileNo;
       },
       err => { 
         console.log(err); 
@@ -32,20 +32,6 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  edit(){
-    console.log(JSON.stringify(this.userDetails));
-    this.isEdit = false;
-  }
-
-  onSubmit(form:NgForm){
-    let updatedUser = new User();
-    updatedUser = form.value;
-    updatedUser.ConfirmPassword = form.value.Password;
-    this.userService.updateUser(updatedUser).subscribe((res)=>{
-      console.log(res);
-    },(err)=>{
-      console.log(err);
-    })
-  }
+  
 
 }

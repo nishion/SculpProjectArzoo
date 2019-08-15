@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const MailModule = require('../config/mailModule');
 
 const User = mongoose.model('User');
+const Enroll = mongoose.model('Enroll');
 const passport = require('passport');
 const _ = require('lodash');
 
@@ -31,7 +32,7 @@ module.exports.register = (req, res, next) => {
     console.log('inside');
 }
 module.exports.authenticate = (req, res, next) => {
-
+console.log(JSON.stringify(req.query),"Body",JSON.stringify(req.body))
     // call for passport authentication
     passport.authenticate('local', (err, User, info) => {
         // error from passport middleware
@@ -57,32 +58,94 @@ module.exports.userProfile = (req, res, next) => {
                     message: 'User record not found.'
                 });
             else
-            
+
                 return res.status(200).json({
-                    status: true,
-                    user: _.pick(user, ['FirstName', 'LastName', 'MobileNo', 'Email', 'CountryCode', 'UserType','Password','ConfirmPassword'])
-                }); // Userdetails to show
+                status: true,
+                user: _.pick(user, ['FirstName', 'LastName', 'MobileNo', 'Email', 'CountryCode', 'UserType', 'Password', 'ConfirmPassword'])
+            }); // Userdetails to show
         }
     );
 }
 
 //sendOTP to mail and return as res
-module.exports.OTP = (req, res, next)=> {
+module.exports.OTP = (req, res, next) => {
     res.status(200).send(MailModule.verifyOTP(req.body.Email).toString());
 }
 
-module.exports.updateUser = (req, res, next)=> {
+module.exports.updateUser = (req, res, next) => {
     //console.log("Query: ",JSON.stringify(req.query),"\nBody:",JSON.stringify(req.body),"\nREQ:",JSON.stringify(req._id));
-    User.updateOne({_id:req._id},{$set : req.body},function(err){
-        if(err){console.log(err);
-        res.status(200).send(err)}
-        else{
+    User.updateOne({ _id: req._id }, { $set: req.body }, function(err) {
+        if (err) {
+            console.log(err);
+            res.status(200).send(err)
+        } else {
             res.status(200).send("OK")
         }
     });
-    
-    
-    
-    
-   
+
+}
+
+module.exports.myPlan = (req, res, next) => {
+    console.log(JSON.stringify(req.body),JSON.stringify(req._id))
+    Enroll.aggregate([{
+                $match: {
+                    User: mongoose.Types.ObjectId(req._id)
+                }
+            }, {
+                $lookup: {
+                    from: "User",
+                    localField: "Coach",
+                    foreignField: "_id",
+                    as: "CoachDetails"
+
+                }
+
+            },
+            {
+                $lookup: {
+                    from: "Plan",
+                    localField: "Plan",
+                    foreignField: "_id",
+                    as: "PlanDetail"
+                }
+
+            },
+            {
+                $project: {
+                    _id: 0,
+                    User: 0,
+                    Plan: 0,
+                    Coach: 0,
+
+                    PlanDetail: {
+                        _id: 0,
+                        Coach: 0
+
+                    },
+                    CoachDetails: {
+                        _id: 0,
+                        MobileNo: 0,
+                        Email: 0,
+                        CountryCode: 0,
+                        UserType: 0,
+                        Password: 0,
+                        ConfirmPassword : 0
+                    }
+                }
+            },
+            {
+                $unwind: "$CoachDetails"
+            },{
+                $unwind : "$PlanDetail"
+            }
+        ],
+        function(err, data) {
+            if (err) {
+                console.log(err)
+            }
+            console.log(JSON.stringify(data));
+            res.status(200).send(data)
+
+        });
+
 }

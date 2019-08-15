@@ -26,6 +26,7 @@ export class SignInComponent implements OnInit {
     }
   }
   onSubmit(form : NgForm){
+    console.log(JSON.stringify(form.value))
     this.userService.login(form.value).subscribe(
       res => {
         

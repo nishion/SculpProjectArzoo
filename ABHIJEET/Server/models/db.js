@@ -6,3 +6,5 @@ mongoose.connect("mongodb://localhost:27017/SculpTest", err => {
 });
 
 require('./user.model');
+require('./plan.model');
+require('./enroll.model');

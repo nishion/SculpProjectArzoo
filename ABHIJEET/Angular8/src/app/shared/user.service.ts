@@ -27,7 +27,7 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl + '/register', user, this.noAuthHeader);
   }
   login(authCredentials) {
-    //console.log("Auth",JSON.stringify(authCredentials));
+    console.log("Auth",authCredentials);
     return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials, this.noAuthHeader);
   }
 
@@ -71,6 +71,10 @@ export class UserService {
 
   updateUser(user: User){
     return this.http.post(environment.apiBaseUrl + '/update',user);
+  }
+
+  myPlan(){
+    return this.http.get(environment.apiBaseUrl + '/myPlan');
   }
 }
 

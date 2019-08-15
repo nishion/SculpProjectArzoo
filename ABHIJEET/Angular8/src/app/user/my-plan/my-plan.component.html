@@ -1,0 +1,63 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="header">
+    <img src="../../assets/images/logo1.jpg" height="60px" width="100px" >
+
+  <div class="header-right">
+    <a href="">Home</a>
+    <a href="">Logout</a>
+  </div>
+  </div>
+
+  <div class="body" >
+
+        <div class="menudiv">
+            <div class = "menu1">
+                <div class="userName"> 
+                    <p style="color: black"> Welcome {{userService.selectedUser.FirstName}}</p>
+                </div>
+              </div>
+    
+              <div class="menu">
+               <ul>
+                  <li><a  routerLink="/userProfile" routerLinkActive="active">Profile</a></li>
+                  <li><a routerLink="/myPlan" routerLinkActive="active" style="font-weight:bolder; background-color: rgb(226, 210, 63)">My Plan</a></li>
+                   <li><a routerLink="/goals" routerLinkActive="active">Goals</a></li>
+                <li><a href="#about">Update</a></li>
+               </ul>
+               </div>
+        </div>
+        
+      <div class="goals1">
+            <div class = "info1"> 
+        <h2>Plan Information</h2><br>
+           Duration : {{myPlan.PlanDetail.Duration}}
+          <br> Start Date : &nbsp; &nbsp;   {{myPlan.StartDate.substring(0,myPlan.StartDate.indexOf('T'))}}<br>
+          <br>End Date :  &nbsp; &nbsp;  {{myPlan.EndDate.substring(0,myPlan.EndDate.indexOf('T'))}}<br>
+        </div>
+
+        </div>
+  
+        <div class="goals2">
+            <div class="pic1">
+                <img src="../../assets/images/coach.png"  >
+          </div>
+          <div class = "info2"> 
+              <h2>My Coach : {{myPlan.CoachDetails.FirstName + " "+myPlan.CoachDetails.LastName}}</h2>
+                 Specialization : {{myPlan.PlanDetail.GoalType}} <br>
+                <br> Coach Information<br>
+                {{myPlan.CoachDetails.Bio}}
+          </div>
+
+          
+        </div>
+  
+        <div class="goals3">
+          <div class = "info1"> 
+              <h2>Course Details</h2>
+                 Course Type:   {{myPlan.PlanDetail.GoalType}}<br>
+              </div>
+            
+        </div>
+      </div>  

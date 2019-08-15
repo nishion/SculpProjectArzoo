@@ -17,6 +17,7 @@ import { LandingPageComponent } from './user/landing-page/landing-page.component
 import { UserService } from './shared/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { MyPlanComponent } from './user/my-plan/my-plan.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     UserProfileComponent,
     SignInComponent,
     LandingPageComponent,
+    MyPlanComponent,
    
   ],
   imports: [

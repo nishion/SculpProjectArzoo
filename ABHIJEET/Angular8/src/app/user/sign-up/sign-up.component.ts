@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/user.service';
 import { NgForm } from '@angular/forms';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +17,7 @@ export class SignUpComponent implements OnInit {
   OTPMSG="";
   OTPClass : any;
   serverErrorMessages: string;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private router : Router) { }
   correctOTP = ".}:{P{P{";
   OTP = "";
   ngOnInit() {
@@ -46,6 +47,7 @@ export class SignUpComponent implements OnInit {
     this.userService.postUser(form.value).subscribe(
       res => {
         this.showSucessMessage = true;
+        this.router.navigateByUrl('/userProfile');
         setTimeout(() => this.showSucessMessage = false, 4000);
         this.resetForm(form);
       },

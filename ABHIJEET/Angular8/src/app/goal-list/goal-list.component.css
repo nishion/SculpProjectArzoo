@@ -1,0 +1,162 @@
+.header {
+    overflow: hidden;
+    background-color:white;
+    
+  }
+  
+  .header a {
+    float: left;
+    color:#FFB300;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px; 
+    margin-top: 8px;
+   margin-right: 15px;
+    border-radius: 4px;
+    background-color: gray;
+  }
+  
+  .header a:hover {
+    background-color: #ddd;
+    color:#FFB300;
+  }
+  
+  .header-right {
+    float: right;
+  }
+  .body {
+    width: 100%;
+    height: 570px;
+    overflow: hidden;
+    position: relative;
+    background-image: url('/assets/images/loginpage.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .body p{
+    margin: 10px;
+    font-size: 18px;
+    color:white;
+    float: left;
+    width: 25%;
+    text-rendering: optimizeLegibility;
+  }
+  
+  .menu{
+     
+      width: 100%;
+      background-color:rgb(247, 186, 73); 
+  }
+  .menu1{
+      height: 50%;
+      width: 100%;
+      background-color: rgb(240, 230, 140);
+      
+  
+  }
+  
+  .menudiv{
+      float: left;
+      height: 100%;
+      width: 15%;
+      background-color: pink;
+      margin-top:none;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  li a {
+    display: block;
+    color: #000;
+    padding: 24px 16px;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+    font-size: 20px;
+  }
+  
+  .goals1{
+    float:left;
+    width:70%;
+    height:175px;
+    background-color:rgb(247, 186, 73);
+    z-index: 99;
+    margin-left: 20px;
+    margin-top: 10px;
+    padding-left:10px; 
+    color: white;
+  }
+  
+  .goals2{
+  float:left;
+  width:70%;
+  height:175px;
+  background-color:rgb(247, 186, 73);
+  z-index: 99;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding-left:10px; 
+  color: white;
+  }
+  
+  .goals3{
+  float:left;
+  width:70%;
+  height:175px;
+  background-color:rgb(247, 186, 73);
+  z-index: 99;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding-left:10px; 
+  color: white;
+  }
+
+  .pic1{
+      width: 220px;
+      height: 155px;
+      background-color:rgb(247, 186, 73);
+      float: left;
+      padding: 10px 10px 10px 10px;
+  }
+  .info1{
+    margin-left: 20px;
+      margin-top: 0px;
+      float: left;
+      height: 100%;
+      width: 500px;
+      background-color:rgb(247, 186, 73);
+      z-index: 99;
+      color: black;
+      padding-left: 20px;
+      
+  }
+  .button{
+    background-color: wheat;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    padding: 20px 20px;
+    margin-left: 30px;
+    margin-top: 50px;
+    cursor: pointer;
+    float:left;
+    border-radius: 20%;
+  }
+
+
+  
+  

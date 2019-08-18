@@ -1,0 +1,53 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="header">
+    <img src="../../assets/images/logo1.jpg" height="60px" width="100px" >
+
+  <div class="header-right">
+    <a routerLink="">Home</a>
+    <a (click)="onLogout()">Logout</a>
+  </div>
+  </div>
+
+  <div class="body" >
+        <div class="menudiv">
+              <div class = "menu1">
+                <div class="userName"> 
+                    <p style="color: black"> Welcome {{userService.selectedUser.FirstName}}</p>
+                </div>
+              </div>
+    
+              <div class="menu">
+               <ul>
+                <li><a  routerLink="/userProfile" routerLinkActive="active">Profile</a></li>
+               <li><a routerLink="/myPlan" routerLinkActive="active">My Plan</a></li>
+                <li><a routerLink="/goalList" routerLinkActive="active"  style="font-weight:bolder; background-color: rgb(226, 210, 63)">Goals</a></li>
+                <li><a href="#about">Update</a></li>
+               </ul>
+               </div>
+        </div>
+        
+
+        <div class="container">
+
+          <h2 id="goaltype">Weigth Loss</h2>
+          <cdk-virtual-scroll-viewport itemSize="100" class="example-viewport">
+          <div id="test" *cdkVirtualFor="let plan of Plans" class="list">
+            <div  id="info" >
+              <div id="coach">
+              Coach Name : {{plan.CoachDetails.FirstName +" "+plan.CoachDetails.LastName}} <br>Duration : {{plan.Duration}} week<br>Price : {{plan.Price}}
+            </div>
+            <div id="bio">
+              <div id="title">Bio</div>
+              <br>{{plan.CoachDetails.Bio}}
+            </div>
+              <div id="button">
+                <button>Enroll</button>
+              </div>
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+        <div class="list"></div>
+        </div>
+                    

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const MailModule = require('../config/mailModule');
-
+const notificationModule = require('../config/notificationModule');
+const DB = require('../models/db');
 const User = mongoose.model('User');
 const Enroll = mongoose.model('Enroll');
 const passport = require('passport');
@@ -69,11 +69,13 @@ module.exports.userProfile = (req, res, next) => {
 
 //sendOTP to mail and return as res
 module.exports.OTP = (req, res, next) => {
-    res.status(200).send(MailModule.verifyOTP(req.body.Email).toString());
+    let mailOTP = notificationModule.verifyMailOTP(req.body.Email.toString()).toString();
+    let smsOTP = notificationModule.verifySMSOTP(req.body.Mobile.toString()).toString();
+    res.status(200).json({"mailOTP":mailOTP,"smsOTP":smsOTP});
 }
 
 module.exports.updateUser = (req, res, next) => {
-    //console.log("Query: ",JSON.stringify(req.query),"\nBody:",JSON.stringify(req.body),"\nREQ:",JSON.stringify(req._id));
+    
     User.updateOne({ _id: req._id }, { $set: req.body }, function(err) {
         if (err) {
             console.log(err);
@@ -145,7 +147,55 @@ module.exports.myPlan = (req, res, next) => {
             }
             console.log(JSON.stringify(data));
             res.status(200).send(data)
-
         });
+}
+
+module.exports.update = (req, res, next) => {
+    console.log(JSON.stringify(req.body),JSON.stringify(req._id))
+    Enroll.aggregate([{
+        $match : {
+            User : mongoose.Types.ObjectId(req._id)
+        }
+    },{
+        $lookup: {
+            from: "User",
+            localField: "User",
+            foreignField: "_id",
+            as: "UserDetails"
+        }
+    },{
+        $lookup: {
+            from: "User",
+            localField: "Coach",
+            foreignField: "_id",
+            as: "CoachDetails"
+        }
+    },{
+        $project : {
+            UserDetails : {
+                FirstName : 1,
+                LastName : 1,
+                MobileNo : 1
+            },
+            CoachDetails : {
+                MobileNo : 1,
+                Email : 1
+            }
+        }
+    },{
+        $unwind : "$UserDetails"
+    },{
+        $unwind : "$CoachDetails"
+    }
+    ], function (err, data) {
+        let Details = data[0];
+        let UserName = Details.UserDetails.FirstName + " " + Details.UserDetails.LastName; 
+        let UserMobile = Details.UserDetails.MobileNo.toString();
+        let CoachMobile = Details.CoachDetails.MobileNo.toString();
+        let CoachMail =  Details.CoachDetails.Email.toString();
+        notificationModule.sendMail(CoachMail, UserName + " Updated", "User "+UserName+" Updated his status. \n User Mobile No : "+ UserMobile);
+        notificationModule.sendText(CoachMobile,"User "+UserName+" Status updated Mobile : "+UserMobile);
+        res.status(200).send("OK");
+    })
 
 }

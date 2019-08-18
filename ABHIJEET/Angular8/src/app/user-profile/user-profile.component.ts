@@ -32,6 +32,12 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  
+  Update(){
+    this.userService.update().subscribe(res =>{
+      console.log(res);
+    }, err =>{
+      console.log(err);
+    })
+  }
 
 }

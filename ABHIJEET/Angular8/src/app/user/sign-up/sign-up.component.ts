@@ -14,26 +14,32 @@ export class SignUpComponent implements OnInit {
   showSucessMessage: boolean;
   isVerified = false;
   Email :"";
+  Mobile : "";
   OTPMSG="";
   OTPClass : any;
   serverErrorMessages: string;
   constructor(private userService: UserService,private router : Router) { }
-  correctOTP = ".}:{P{P{";
-  OTP = "";
+  correctMailOTP = ".}:{P{P{";
+  correctSMSOTP = ".}:{P{P{";
+  MobileOTP : any;
+  MailOTP : any;
+  OTP : any;
+  showOTP = true;
   ngOnInit() {
-
   }
   sendOTP(){
-    this.userService.OTPverify(this.userService.selectedUser.Email).subscribe(res => {
-      this.correctOTP = res.toString();
-      console.log(res);
+    console.log(this.userService.selectedUser.Email,this.userService.selectedUser.MobileNo);
+    this.userService.OTPverify(this.userService.selectedUser.Email,this.userService.selectedUser.MobileNo).subscribe(res => {
+      this.OTP = res;
+      console.log(this.OTP)
     })
   }
-  onVerify(form: NgForm) {
-      if (this.OTP == this.correctOTP) {
+  onVerify() {
+      if (this.MailOTP == this.OTP.mailOTP && this.MobileOTP == this.OTP.smsOTP) {
         this.isVerified = true;
         this.OTPClass = "success"
         this.OTPMSG = "Verified"
+        this.showOTP = false;
       } else {
         this.OTPMSG = "Try Again"
         this.OTPClass = "alert"

@@ -1,0 +1,306 @@
+.header {
+  overflow: hidden;
+  background-color:white;
+  
+}
+
+.header a {
+  float: left;
+  color:#FFB300;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  margin-top: 8px;
+ margin-right: 15px;
+  border-radius: 4px;
+  background-color: gray;
+}
+
+.header a:hover {
+  background-color: #ddd;
+  color:#FFB300;
+}
+
+.header-right {
+  float: right;
+}
+.body {
+  width: 100%;
+  height: 570px;
+  overflow: hidden;
+  position: relative;
+  background-image: url('/assets/images/loginpage.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.body p{
+  margin: 10px;
+  font-size: 18px;
+  color:white;
+  float: left;
+  width: 25%;
+  text-rendering: optimizeLegibility;
+}
+
+
+.menu{
+    height: 100%;
+    width: 100%;
+    background-color:rgb(247, 186, 73); 
+}
+.menu1{
+    height: 50%;
+    width: 100%;
+    background-color: rgb(240, 230, 140);
+    
+
+}
+
+.menudiv{
+    float: left;
+    height: 100%;
+    width: 15%;
+    background-color: pink;
+    margin-top:none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 24px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+  font-size: 20px;
+}
+
+
+.button{
+background-color: wheat;
+border: none;
+color: black;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 25px;
+padding: 20px 20px;
+margin-left: 30px;
+margin-top: 50px;
+cursor: pointer;
+float:left;
+border-radius: 20%;
+}
+
+
+.container {
+float:left;
+width:80%;
+height:100%;
+background-color: rgb(247, 186, 73);
+z-index: 99;
+margin-left: 20px;
+margin-top: 10px;
+padding-left:10px; 
+color: black;
+}
+
+.form-group {
+height: auto;
+position: relative;
+margin-left: 20px;
+}
+
+.form-input {
+padding-top: 21px;
+}
+
+.select-list {
+margin-top:10px;
+position: relative;
+display: inline-block;
+width: 25%;
+margin-bottom: 55px;
+}
+.list-item {
+position: absolute;
+width: 100%; 
+}
+
+#countrycode {
+float: left;
+
+z-index: 99;
+}
+
+.submit {
+margin-top: 20px;
+margin-left: 20px;
+width: auto;
+background: #FFB300;
+color: #fff;
+padding: 15px 43px;
+font-weight: bold;
+border: none;
+border-radius: 5px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+-o-border-radius: 5px;
+-ms-border-radius: 5px;
+cursor: pointer;
+height: 50px;
+float: left;
+}
+
+.submit:hover {
+background: #555;
+}
+
+input:focus, select:focus {
+  border-bottom: 1px solid #FFB300; }
+
+
+input::-webkit-input-placeholder {
+color: #bebebe; }
+input::-moz-placeholder {
+color: #bebebe; }
+input:-ms-input-placeholder {
+color: #bebebe; }
+input:-moz-placeholder {
+color: #bebebe; }
+
+
+
+
+
+
+
+
+
+
+
+input, select {
+box-sizing: border-box;
+width: 100%;
+display: block;
+border: none;
+font-family: Poppins;
+color: black;
+background: transparent;
+border-bottom: 1px solid #999;
+padding: 4px 0;
+}
+
+select{
+margin-top:20px;
+}
+
+option{
+color:black;
+}
+
+.userName {
+height: 100%;
+width: 100%;
+padding-top : 50%;
+padding-bottom : 50%;
+padding-left : 25%;
+padding-right: 25%;
+text-align: center;
+vertical-align: middle;
+}
+
+#goaltype{
+font-size: 50px;
+color : white;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+text-align: center;
+margin-top : 10px;
+margin-bottom: 0px;
+margin-left: 40%;
+}
+
+
+#info {
+
+box-shadow: #000;
+border-radius: 6px;
+background-color :white;
+margin: 10px;
+height: 110px;
+width: 98%;
+}
+
+#bio {
+margin-left : 30px;
+height: 100%;
+width : 50%;
+float : left;
+overflow: hidden;
+margin-top : 0px;
+} 
+
+
+
+
+#coach {
+padding : 20px;
+float: left;
+}
+
+#button {
+
+}
+button {
+font-size: 20px;
+float: right;
+background-color : #FFB300;
+margin-top : 25px;
+margin-right: 25px;
+width: 150px;
+height: 55px;
+border-radius: 6px;
+border : none;
+}
+
+tr{
+width : 100%;
+}
+
+table{
+width: 100%;  
+}
+
+.example-viewport{
+box-shadow: #000;
+border-radius: 6px;
+background-color : transparent;
+margin: 10px;
+height: 81%;
+width: 98%;
+display: flex;
+}
+.list{
+box-shadow: #000;
+border-radius: 6px;
+background-color :white;
+margin: 10px;
+height: 100%;
+justify-content: center;
+align-items: center;
+}
+#title {
+margin-left : 50%;
+}

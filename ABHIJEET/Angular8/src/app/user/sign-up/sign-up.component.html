@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <div class="select-list">
                                 <select name="CountryCode" class="list-item" id="countrycode" #CountryCode="ngModel" [(ngModel)]="userService.selectedUser.CountryCode" required>
-                                                            <option  value=""></option>
+                                                            <option  value="Country Code"></option>
                                                             <option data-countryCode="GB" value="44" Selected>UK (+44)</option>
                                                             <option data-countryCode="US" value="1">USA (+1)</option>
                                                            
@@ -254,11 +254,11 @@
 
 </select>
                             </div>
-                            <label for="phone" class="form-label">Country Code</label>
+                            <label for="CC" class="form-label">Country Code</label>
                         </div>
 
                         <div class="form-group form-input">
-                            <input type="number" name="MobileNo" id="phone" #MobileNo="ngModel" [(ngModel)]="userService.selectedUser.MobileNo" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !MobileNo.valid }">
+                            <input type="number" name="MobileNo" id="phone" #MobileNo="ngModel" [(ngModel)]="userService.selectedUser.MobileNo" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !MobileNo.valid }" [disabled] ="!showOTP">
                             <div *ngIf="signUpForm.submitted && !MobileNo.valid">
                                 <label class="validation-message">This field is required.</label>
                             </div>
@@ -266,22 +266,24 @@
                         </div>
 
                         <div class="form-group form-input">
-                            <input type="email" name="Email" id="emailid" #Email="ngModel" [(ngModel)]="userService.selectedUser.Email"  required [pattern]="emailRegex" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !Email.valid }">
-                            <div  *ngIf="!Email.errors" >
-                                    <form #OTPVerifyForm="ngForm" (ngSubmit)="onVerify(OTPVerifyForm)" id="registration-form">
-                                <input type ="number" placeholder="OTP" name="OTP" #OTP1='ngModel' [(ngModel)]='OTP'><input type="button" value="Send OTP" (click)="sendOTP()"><input type="submit" value="Verify OTP" required>
-                                <div [class]="OTPClass">
-                                    {{OTPMSG}}
+                            <input type="email" name="Email" id="emailid" #Email="ngModel" [(ngModel)]="userService.selectedUser.Email"  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !Email.valid }" [pattern]="emailRegex" [disabled] ="!showOTP">
+                            <label for="email" class="form-label">Your Email Address</label>
+                            <div *ngIf="signUpForm.submitted && Email.errors">
+                                    <label *ngIf="Email.errors.required" class="validation-message">This field is required.</label>
+                                    <label *ngIf="Email.errors.pattern" class="validation-message">Invalid email address.</label>
                                 </div>
-                                 
-                                </form>
+                                <div [class]="OTPClass">
+                                        {{OTPMSG}}
+                                    </div>
+                            <div  *ngIf="!Email.errors && MobileNo.valid && showOTP" class="OTP">
+                                
+                                <input class="otpinput" type ="number" placeholder="Mobile OTP" name="OTP" #OTP1='ngModel' [(ngModel)]='MobileOTP'><input class="otpinput" type ="number" placeholder="Mail OTP" name="OTP" #OTP1='ngModel' [(ngModel)]='MailOTP'>
+                                <input class="otpbutton" type="button" value="Send OTP" (click)="sendOTP()"><input id="last" class="otpbutton" type="submit" value="Verify OTP" (click)="onVerify()" required>
+               
                             </div>
                             
-                            <div *ngIf="signUpForm.submitted && Email.errors">
-                                <label *ngIf="Email.errors.required" class="validation-message">This field is required.</label>
-                                <label *ngIf="Email.errors.pattern" class="validation-message">Invalid email address.</label>
-                            </div>
-                            <label for="email" class="form-label">Your Email Address</label>
+                            
+                            
                         </div>
 
 

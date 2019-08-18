@@ -6,6 +6,10 @@ import { LandingPageComponent } from './user/landing-page/landing-page.component
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { AuthGuard } from './auth/auth.guard';
 import { MyPlanComponent } from './user/my-plan/my-plan.component';
+import { GoalListComponent } from './goal-list/goal-list.component';
+import { GoalWLComponent } from './goal-wl/goal-wl.component';
+import { GoalNComponent } from './goal-n/goal-n.component';
+import { GoalSTComponent } from './goal-st/goal-st.component';
 
 export const appRoutes: Routes = [
     {
@@ -31,5 +35,17 @@ export const appRoutes: Routes = [
     },
     {
         path: 'xD', redirectTo: '', pathMatch: 'full'
+    },
+    {
+        path: 'goalList', component: GoalListComponent, canActivate: [AuthGuard]
+    },
+    {
+        path: 'goalWL', component: GoalWLComponent,
+    },
+    {
+        path: 'goalN', component: GoalNComponent,
+    },
+    {
+        path: 'goalSt', component: GoalSTComponent,
     }
 ];

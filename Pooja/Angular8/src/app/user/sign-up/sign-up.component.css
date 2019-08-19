@@ -315,6 +315,7 @@ a {
     -o-border-radius: 5px;
     -ms-border-radius: 5px;
     cursor: pointer;
+    float: right;
 }
 
 .submit1:hover {

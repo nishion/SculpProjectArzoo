@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<div class="header">
+    <img src="../../assets/images/logo.PNG" height="60px" width="140px">
+    <div class="header-right">
+        <a routerLink="/login" routerLinkActive="active" id="link">Login</a>
+        <a routerLink="/signup" routerLinkActive="active" id="link">Register</a>
+    </div>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="login-data">
+                <div class="login-image">
+                    <img class="login-img" src="../../assets/images/jog.jpg" alt="login Image">
+                </div>
+
+
+
+
+                <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+                    <input type="text" name="MobileNo" #MobileNo="ngModel" [(ngModel)]="model.MobileNo" placeholder="Mobile" required [ngClass]="{'invalid-textbox' :signInForm.submitted && !MobileNo.valid }">
+                    <div *ngIf="signInForm.submitted && !MobileNo.valid">
+                        <label class="validation-message">Invalid mobile number</label>
+                    </div>
+                    <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="password" required minlength="4" [ngClass]="{'invalid-textbox' :signInForm.submitted && !password.valid }">
+                    <div *ngIf="signInForm.submitted && password.errors?.minlength">
+                        <label class="validation-message">Minimum 4 characters.</label>
+                    </div>
+                    <!--<input type="submit" value="Sign In"> !-->
+                    <input type="submit" routerLink="/userProfile" id="link" value="SignIn">
+
+                </form>
+                <!-- Error message -->
+                <div class="alert" *ngIf="serverErrorMessages">
+                    {{serverErrorMessages}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

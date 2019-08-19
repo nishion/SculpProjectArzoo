@@ -258,7 +258,7 @@
                         </div>
 
                         <div class="form-group form-input">
-                            <input type="number" name="MobileNo" id="phone" #MobileNo="ngModel" [(ngModel)]="userService.selectedUser.MobileNo" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !MobileNo.valid }" [disabled] ="!showOTP">
+                            <input type="number" name="MobileNo" id="phone" #MobileNo="ngModel" [(ngModel)]="userService.selectedUser.MobileNo" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !MobileNo.valid }" >
                             <div *ngIf="signUpForm.submitted && !MobileNo.valid">
                                 <label class="validation-message">This field is required.</label>
                             </div>
@@ -266,7 +266,7 @@
                         </div>
 
                         <div class="form-group form-input">
-                            <input type="email" name="Email" id="emailid" #Email="ngModel" [(ngModel)]="userService.selectedUser.Email"  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !Email.valid }" [pattern]="emailRegex" [disabled] ="!showOTP">
+                            <input type="email" name="Email" id="emailid" #Email="ngModel" [(ngModel)]="userService.selectedUser.Email"  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !Email.valid }" [pattern]="emailRegex">
                             <label for="email" class="form-label">Your Email Address</label>
                             <div *ngIf="signUpForm.submitted && Email.errors">
                                     <label *ngIf="Email.errors.required" class="validation-message">This field is required.</label>

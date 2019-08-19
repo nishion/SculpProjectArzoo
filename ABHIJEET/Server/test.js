@@ -1,8 +1,10 @@
-const DB = require('../../Server/DBConnection.js');
+
 var User = require('../../Server/models/user');
 var Plan = require('../../Server/models/plan');
 // var tmp = "9657663844"
-User.find()
+User.find({FirstName : "sahil"},function(err,res){
+    console.log(JSON.stringify(res));
+})
 // DB.collection('Enroll').aggregate([{
 //     $lookup: {
 //         from: "User",

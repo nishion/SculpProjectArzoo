@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
   }
   sendOTP(){
-    console.log(this.userService.selectedUser.Email,this.userService.selectedUser.MobileNo);
+    console.log(this.userService.selectedUser.Email,this.userService.selectedUser.CountryCode + this.userService.selectedUser.MobileNo);
     this.userService.OTPverify(this.userService.selectedUser.Email,this.userService.selectedUser.MobileNo).subscribe(res => {
       this.OTP = res;
       console.log(this.OTP)

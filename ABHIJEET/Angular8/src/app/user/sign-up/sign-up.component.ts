@@ -62,7 +62,7 @@ export class SignUpComponent implements OnInit {
     form.value.UserType = "U"
     this.userService.postUser(form.value).subscribe(
       res => {
-        this.showSucessMessage = true;
+        this.showSucessMessage = true;  //Done By Abhijeet
         this.router.navigateByUrl('/userProfile');
         setTimeout(() => this.showSucessMessage = false, 4000);
         this.resetForm(form);

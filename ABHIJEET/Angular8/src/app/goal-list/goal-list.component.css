@@ -156,7 +156,16 @@
     float:left;
     border-radius: 20%;
   }
-
+  .userName {
+    height: 100%;
+    width: 100%;
+    padding-top : 50%;
+    padding-bottom : 50%;
+    padding-left : 25%;
+    padding-right: 25%;
+    text-align: center;
+    vertical-align: middle;
+  }
 
   
   

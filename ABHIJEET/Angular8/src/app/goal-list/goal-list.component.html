@@ -1,4 +1,4 @@
-<p>goal-list works!</p>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,21 +13,24 @@
 
   <div class="body" >
 
-        <div class="menudiv">
-              <div class = "menu1">
-                <p style="color: black">Welcome</p>
-                <p style="color: black">User</p>
-              </div>
+    <div class="menudiv">
+      <div class = "menu1">
+        <div class="userName"> 
+            <p style="color: black"> Welcome {{userService.selectedUser.FirstName}}</p>
+        </div>
+      </div>
+      
     
               <div class="menu">
                <ul>
-                <li><a  href="#home" routerLink="/myprofile" routerLinkActive="active">Profile</a></li>
-                <li><a routerLink="/myplan" routerLinkActive="active">My Plan</a></li>
-                <li><a routerLink="/goals" routerLinkActive="active" style="font-weight:bolder; background-color: rgb(226, 210, 63)">Goals</a></li>
+                <li><a  href="#home" routerLink="/userProfile" routerLinkActive="active">Profile</a></li>
+                <li><a routerLink="/myPlan" routerLinkActive="active">My Plan</a></li>
+                <li><a routerLink="/goalList" routerLinkActive="active" style="font-weight:bolder; background-color: rgb(226, 210, 63)">Goals</a></li>
                 <li><a href="#about">Update</a></li>
                </ul>
                </div>
         </div>
+  
         
       <div class="goals1">
           
@@ -74,4 +77,5 @@
               <a href="#" class="button" routerLink="/goalSt" >Join</a>
             
         </div>
-      </div>  
+  </div>
+      
